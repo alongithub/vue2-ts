@@ -3,7 +3,7 @@
  * @Author: sunwenlong
  * @Date: 2020-11-03 16:39:27
  * @LastEditors: sunwenlong
- * @LastEditTime: 2020-11-03 17:26:18
+ * @LastEditTime: 2020-11-05 14:49:49
 -->
 <template>
 	<el-card class="box-card">
@@ -70,13 +70,26 @@
 			</el-table-column>
 			<el-table-column label="操作">
 				<template slot-scope="scope">
-					<el-button type="text">分配菜单</el-button>
-					<el-button type="text">分配资源</el-button>
+					<el-button type="text" @click="$router.push({
+						name: 'alloc-menu',
+						params: {
+							roleId: scope.row.id
+						}
+					})">分配菜单</el-button>
+					<el-button type="text" @click="$router.push({
+						name: 'alloc-resource',
+						params: {
+							roleId: scope.row.id
+						}
+					})">分配资源</el-button>
 					<el-button
 						type="text"
 						@click="editRole(scope.row)"
 					>编辑</el-button>
-					<el-button type="text">删除</el-button>
+					<el-button
+						type="text"
+						@click="onDeleteRole(scope.row.id)"
+					>删除</el-button>
 				</template>
 			</el-table-column>
 		</el-table>
@@ -92,11 +105,16 @@
 		>
 		</el-pagination>
 		<el-dialog
-			title="添加角色"
+			:title="editId === null ? '添加角色' : '编辑角色'"
 			:visible.sync="dialogFormVisible"
 			width="30%"
 		>
-			<create-or-edit />
+			<create-or-edit
+				:edit-id="editId"
+				v-if="dialogFormVisible"
+				@cancel-create-edit="dialogFormVisible=false;editId = null;"
+				@reload-list="loadRoles"
+			/>
 		</el-dialog>
 	</el-card>
 
@@ -104,9 +122,9 @@
 <style lang='scss' scoped></style>
 <script lang='ts'>
 import Vue from "vue";
-import CreateOrEdit from './createOrEdit.vue';
+import CreateOrEdit from "./createOrEdit.vue";
 
-import { getRolePages } from "@/services/role";
+import { getRolePages, deleteRole } from "@/services/role";
 import { Form } from "element-ui";
 
 export default Vue.extend({
@@ -124,7 +142,8 @@ export default Vue.extend({
 			},
 			isLoading: true,
 			total: 0,
-			dialogFormVisible: false
+			dialogFormVisible: false,
+			editId: null // 保存编辑时的id
 		};
 	},
 	created() {
@@ -146,6 +165,27 @@ export default Vue.extend({
 		onSubmit() {
 			this.form.current = 1;
 			this.loadRoles();
+		},
+		editRole(row: any) {
+			this.editId = row.id;
+			this.dialogFormVisible = true;
+		},
+		async onDeleteRole(id: number) {
+			this.$confirm("确认删除吗，是否继续?", "删除提示", {
+				confirmButtonText: "确定",
+				cancelButtonText: "取消",
+				type: "warning"
+			})
+				.then(async () => {
+					const { data } = await deleteRole(id);
+					if (data.code === "000000") {
+						this.$message.success("删除成功");
+						this.loadRoles();
+					}
+				})
+				.catch(() => {
+					this.$message.info("取消删除");
+				});
 		},
 		handleSizeChange(val: number) {
 			this.form.size = val;

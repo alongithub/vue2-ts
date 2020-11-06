@@ -3,7 +3,7 @@
  * @Author: sunwenlong
  * @Date: 2020-10-29 16:47:07
  * @LastEditors: sunwenlong
- * @LastEditTime: 2020-11-02 16:40:06
+ * @LastEditTime: 2020-11-06 13:23:48
  */
 import axios from "axios";
 import store from '@/store';
@@ -130,7 +130,6 @@ request.interceptors.response.use(function (response) {
 	} else { // 在请求体里发生错误
 		Message.error(`请求失败${error.message}`);
 	}
-
 	return Promise.reject(error);
 });
 

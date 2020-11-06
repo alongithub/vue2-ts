@@ -100,6 +100,24 @@ const routes: Array<RouteConfig> = [
 				meta: {
 					requiresAuth: true
 				}
+			},
+			{
+				path: "/role/alloc-menu/:roleId",
+				name: "alloc-menu",
+				component: () => import(/* webpackChunkName: 'alloc-menu' */ "@/views/role/alloc-menu.vue"),
+				meta: {
+					requiresAuth: true
+				},
+				props: true
+			},
+			{
+				path: "/role/alloc-resource/:roleId",
+				name: "alloc-resource",
+				component: () => import(/* webpackChunkName: 'alloc-resource' */ "@/views/role/alloc-resource.vue"),
+				meta: {
+					requiresAuth: true
+				},
+				props: true
 			}
 		]
 	},
