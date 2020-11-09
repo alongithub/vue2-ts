@@ -118,6 +118,14 @@ const routes: Array<RouteConfig> = [
 					requiresAuth: true
 				},
 				props: true
+			},
+			{
+				path: "/course/create",
+				name: "course-create",
+				component: () => import(/* webpackChunkName: 'course-create' */ "@/views/course/create.vue"),
+				meta: {
+					requiresAuth: true
+				}
 			}
 		]
 	},
