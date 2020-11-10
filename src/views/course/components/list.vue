@@ -3,7 +3,7 @@
  * @Author: sunwenlong
  * @Date: 2020-11-05 17:09:09
  * @LastEditors: sunwenlong
- * @LastEditTime: 2020-11-06 15:35:30
+ * @LastEditTime: 2020-11-09 14:02:27
 -->
 <template>
 	<div class=''>
@@ -108,13 +108,13 @@
 				</template>
 			</el-table-column>
 			<el-table-column label="操作">
-				<!-- <template slot-scope="scope">
+				<template slot-scope="scope">
 
-					<el-button type="text">编辑</el-button>
-					<el-button type="text">
+					<el-button type="text" @click="$router.push({name: 'course-edit', params: {courseId: scope.row.id}})">编辑</el-button>
+					<el-button type="text" @click="$router.push({name: 'course-section', params: {courseId: scope.row.id}})">
 						内容管理
 					</el-button>
-				</template> -->
+				</template>
 			</el-table-column>
 		</el-table>
 		<el-pagination

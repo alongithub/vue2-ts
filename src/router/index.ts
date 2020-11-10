@@ -126,6 +126,33 @@ const routes: Array<RouteConfig> = [
 				meta: {
 					requiresAuth: true
 				}
+			},
+			{
+				path: "/course/edit/:courseId",
+				name: "course-edit",
+				component: () => import(/* webpackChunkName: 'course-edit' */ "@/views/course/edit.vue"),
+				meta: {
+					requiresAuth: true
+				},
+				props: true
+			},
+			{
+				path: "/course/section/:courseId",
+				name: "course-section",
+				component: () => import(/* webpackChunkName: 'course-section' */ "@/views/course/section.vue"),
+				meta: {
+					requiresAuth: true
+				},
+				props: true
+			},
+			{
+				path: "/course/video/:courseId",
+				name: "course-video",
+				component: () => import(/* webpackChunkName: 'course-video' */ "@/views/course/video.vue"),
+				meta: {
+					requiresAuth: true
+				},
+				props: true
 			}
 		]
 	},

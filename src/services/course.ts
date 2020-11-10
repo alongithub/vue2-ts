@@ -3,7 +3,7 @@
  * @Author: sunwenlong
  * @Date: 2020-11-06 14:48:06
  * @LastEditors: sunwenlong
- * @LastEditTime: 2020-11-08 23:04:20
+ * @LastEditTime: 2020-11-09 12:42:30
  */
 import request from "@/utils/request";
 
@@ -65,7 +65,7 @@ export const saveCoutse = (data: any) => {
  */
 export const uploadImg = (
 	data: any,
-	onUploadProgress: (progressEvent: ProgressEvent) => void
+	onUploadProgress?: (progressEvent: ProgressEvent) => void
 ) => {
 	return request({
 		method: 'POST',
@@ -78,5 +78,22 @@ export const uploadImg = (
 		// 	Math.floor(e.loaded / e.total * 100);
 		// }
 		onUploadProgress
+	});
+};
+
+/**
+ * @name: 根据id获取课程详情
+ * @test: test font
+ * @msg:
+ * @param {number} courseId
+ * @return {*}
+ */
+export const getCourseInfo = (courseId: number|string) => {
+	return request({
+		method: 'GET',
+		url: '/boss/course/getCourseById',
+		params: {
+			courseId
+		}
 	});
 };
