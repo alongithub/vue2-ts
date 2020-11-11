@@ -1,5 +1,5 @@
 /public
-
+/test-serve
 /node_modules
 
 /.vscode
@@ -24,3 +24,5 @@ tsconfig.json
 vue.config.js
 
 yarn.lock
+
+/dist

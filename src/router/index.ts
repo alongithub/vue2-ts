@@ -153,6 +153,40 @@ const routes: Array<RouteConfig> = [
 					requiresAuth: true
 				},
 				props: true
+			},
+			{
+				path: "/advert/create",
+				name: "advert-create",
+				component: () => import(/* webpackChunkName: 'advert-create' */ "@/views/advert/components/createOrEdit.vue"),
+				meta: {
+					requiresAuth: true
+				}
+			},
+			{
+				path: "/advert/edit/:id",
+				name: "advert-edit",
+				component: () => import(/* webpackChunkName: 'advert-edit' */ "@/views/advert/components/createOrEdit.vue"),
+				meta: {
+					requiresAuth: true
+				},
+				props: true
+			},
+			{
+				path: "/advert-space/edit/:id",
+				name: "advert-space-edit",
+				component: () => import(/* webpackChunkName: 'advert-space-edit' */ "@/views/advert-space/components/createOrEdit.vue"),
+				meta: {
+					requiresAuth: true
+				},
+				props: true
+			},
+			{
+				path: "/advert-space/create",
+				name: "advert-space-create",
+				component: () => import(/* webpackChunkName: 'advert-space-create' */ "@/views/advert-space/components/createOrEdit.vue"),
+				meta: {
+					requiresAuth: true
+				}
 			}
 		]
 	},

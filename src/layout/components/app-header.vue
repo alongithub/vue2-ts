@@ -3,7 +3,7 @@
  * @Author: sunwenlong
  * @Date: 2020-10-30 14:31:31
  * @LastEditors: sunwenlong
- * @LastEditTime: 2020-11-02 16:39:37
+ * @LastEditTime: 2020-11-10 11:38:27
 -->
 <template>
 	<div class='header'>
@@ -50,8 +50,10 @@
 </style>
 
 <script lang='ts'>
+import Vue from 'vue';
 import { getUserInfo } from "@/services/user";
-export default {
+
+export default Vue.extend({
 	name: "HeadIndex",
 	data() {
 		return {
@@ -88,5 +90,5 @@ export default {
 			});
 		}
 	}
-};
+});
 </script>
